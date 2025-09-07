@@ -1,24 +1,26 @@
 package com.sistema.reservas.model;
 
 /**
- * Representa una camioneta en el sistema de reservas.
- * Hereda de Vehiculo y añade capacidad de carga.
+ * Represents a truck/van in the vehicle reservation system.
+ * Inherits from the Vehicle class and adds load capacity specification.
+ * Contains specific attributes and methods for truck/van management.
  *
  * @author Santi Bartolo
  * @version 1.0
  */
 public class Camioneta extends Vehiculo {
-    private double capacidadCarga;
+    private double capacidadCarga; // Load capacity in kilograms (kg)
 
     /**
-     * Constructor para crear una instancia de Camioneta.
+     * Constructor to create a Truck/Van instance.
+     * Initializes truck/van properties including load capacity.
      *
-     * @param id Identificador único de la camioneta
-     * @param marca Marca de la camioneta
-     * @param modelo Modelo de la camioneta
-     * @param año Año de fabricación
-     * @param costo Costo diario de alquiler
-     * @param capacidad Capacidad de carga en kilogramos
+     * @param id Unique identifier for the truck/van
+     * @param marca Brand of the truck/van
+     * @param modelo Model of the truck/van
+     * @param año Manufacturing year
+     * @param costo Daily rental cost
+     * @param capacidad Load capacity in kilograms (kg)
      */
     public Camioneta(String id, String marca, String modelo, int año, double costo, double capacidad) {
         super(id, marca, modelo, año, costo);
@@ -26,9 +28,9 @@ public class Camioneta extends Vehiculo {
     }
 
     /**
-     * Obtiene la capacidad de carga de la camioneta.
+     * Gets the load capacity of the truck/van.
      *
-     * @return Capacidad de carga en kg
+     * @return Load capacity in kilograms (kg)
      */
     public double getCapacidadCarga() {
         return capacidadCarga;

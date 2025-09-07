@@ -5,22 +5,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Representa un cliente del sistema de reservas de vehículos.
- * Gestiona la información personal del cliente y sus reservas activas.
+ * Represents a customer in the vehicle reservation system.
+ * Manages customer personal information and their active reservations.
+ * Handles reservation operations and validation rules.
  *
  * @author Santi Bartolo
  * @version 1.0
  */
 public class Cliente {
-    private String idCliente;
-    private String nombre;
-    private List<Reserva> reservas;
+    private String idCliente;        // Unique customer identifier
+    private String nombre;           // Customer's full name
+    private List<Reserva> reservas;  // List of customer's reservations
 
     /**
-     * Constructor para crear una instancia de Cliente.
+     * Constructor to create a Customer instance.
+     * Initializes an empty reservation list.
      *
-     * @param id Identificador único del cliente
-     * @param nombre Nombre completo del cliente
+     * @param id Unique identifier for the customer
+     * @param nombre Full name of the customer
      */
     public Cliente(String id, String nombre) {
         this.idCliente = id;
@@ -29,25 +31,26 @@ public class Cliente {
     }
 
     /**
-     * Permite al cliente reservar un vehículo si está disponible y no tiene reservas activas.
+     * Allows a customer to reserve a vehicle if available and without active reservations.
+     * Performs validation checks before creating the reservation.
      *
-     * @param vehiculo Vehículo a reservar
-     * @param inicio Fecha de inicio de la reserva
-     * @param fin Fecha de fin de la reserva
-     * @param seguro true si incluye seguro
-     * @param gps true si incluye GPS
-     * @throws IllegalStateException Si el vehículo no está disponible o el cliente tiene reserva activa
+     * @param vehiculo Vehicle to be reserved
+     * @param inicio Reservation start date
+     * @param fin Reservation end date
+     * @param seguro true to include insurance
+     * @param gps true to include GPS
+     * @throws IllegalStateException if vehicle is unavailable or customer has active reservation
      */
     public void reservarVehiculo(Vehiculo vehiculo, LocalDate inicio, LocalDate fin,
                                  boolean seguro, boolean gps) {
         if (!vehiculo.isDisponible()) {
-            throw new IllegalStateException("El vehículo no está disponible.");
+            throw new IllegalStateException("Vehicle is not available.");
         }
 
-        // Verificar si el cliente tiene reservas activas
+        // Check if customer has any active reservations
         for (Reserva r : reservas) {
             if (r.getFechaFin().isAfter(LocalDate.now())) {
-                throw new IllegalStateException("Ya tienes una reserva activa.");
+                throw new IllegalStateException("You already have an active reservation.");
             }
         }
 
@@ -59,27 +62,27 @@ public class Cliente {
     // ==================== GETTERS ====================
 
     /**
-     * Obtiene la lista de reservas del cliente.
+     * Gets the list of customer's reservations.
      *
-     * @return Lista de reservas
+     * @return List of reservation objects
      */
     public List<Reserva> getReservas() {
         return reservas;
     }
 
     /**
-     * Obtiene el ID único del cliente.
+     * Gets the unique customer identifier.
      *
-     * @return ID del cliente
+     * @return Customer ID
      */
     public String getIdCliente() {
         return idCliente;
     }
 
     /**
-     * Obtiene el nombre del cliente.
+     * Gets the customer's full name.
      *
-     * @return Nombre del cliente
+     * @return Customer name
      */
     public String getNombre() {
         return nombre;

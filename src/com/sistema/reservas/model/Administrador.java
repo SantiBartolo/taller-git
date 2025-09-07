@@ -5,49 +5,51 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Representa un administrador del sistema de reservas.
- * Gestiona la flota de vehículos y verifica disponibilidades.
+ * Represents an administrator in the vehicle reservation system.
+ * Manages the vehicle fleet and handles availability verification.
+ * Responsible for fleet operations and inventory management.
  *
  * @author Santi Bartolo
  * @version 1.0
  */
 public class Administrador {
-    private List<Vehiculo> flota;
+    private List<Vehiculo> flota; // Complete vehicle fleet list
 
     /**
-     * Constructor para crear una instancia de Administrador.
-     * Inicializa la flota de vehículos vacía.
+     * Constructor to create an Administrator instance.
+     * Initializes an empty vehicle fleet.
      */
     public Administrador() {
         this.flota = new ArrayList<>();
     }
 
     /**
-     * Añade un nuevo vehículo a la flota del sistema.
+     * Adds a new vehicle to the system fleet.
      *
-     * @param vehiculo Vehículo a agregar a la flota
+     * @param vehiculo Vehicle to be added to the fleet
      */
     public void añadirVehiculo(Vehiculo vehiculo) {
         flota.add(vehiculo);
     }
 
     /**
-     * Verifica la disponibilidad de un vehículo en un rango de fechas.
+     * Verifies vehicle availability for a specific date range.
+     * Currently uses simplified logic (checks current availability only).
      *
-     * @param vehiculo Vehículo a verificar
-     * @param inicio Fecha de inicio del período
-     * @param fin Fecha de fin del período
-     * @return true si el vehículo está disponible, false otherwise
+     * @param vehiculo Vehicle to check availability for
+     * @param inicio Start date of the period
+     * @param fin End date of the period
+     * @return true if vehicle is available, false otherwise
      */
     public boolean verificarDisponibilidad(Vehiculo vehiculo, LocalDate inicio, LocalDate fin) {
-        // Lógica simplificada: asumimos que no hay reservas superpuestas
+        // Simplified logic: assumes no overlapping reservations
         return vehiculo.isDisponible();
     }
 
     /**
-     * Lista todos los vehículos disponibles en la flota.
+     * Lists all currently available vehicles in the fleet.
      *
-     * @return Lista de vehículos disponibles
+     * @return List of available vehicles
      */
     public List<Vehiculo> listarVehiculosDisponibles() {
         List<Vehiculo> disponibles = new ArrayList<>();
@@ -58,9 +60,9 @@ public class Administrador {
     }
 
     /**
-     * Obtiene la flota completa de vehículos.
+     * Gets the complete vehicle fleet.
      *
-     * @return Lista completa de vehículos
+     * @return Complete list of vehicles in the fleet
      */
     public List<Vehiculo> getFlota() {
         return flota;

@@ -1,28 +1,26 @@
 package com.sistema.reservas.model;
 
 /**
- * Clase abstracta que representa un vehículo genérico en el sistema de reservas.
- * Contiene atributos comunes a todos los vehículos y métodos para gestión básica.
- *
- * @author Santi Bartolo
- * @version 1.0
+ * Abstract class representing a generic vehicle in the reservation system.
+ * Serves as the base class for all vehicle types with common attributes and methods.
+ * Contains core functionality for vehicle management and price calculation.
  */
 public abstract class Vehiculo {
-    protected String idVehiculo;
-    protected String marca;
-    protected String modelo;
-    protected int año;
-    protected double costoDiario;
-    protected boolean disponibilidad;
+    protected String idVehiculo;      // Unique vehicle identifier
+    protected String marca;           // Vehicle brand (e.g., "Toyota")
+    protected String modelo;          // Vehicle model (e.g., "Corolla")
+    protected int año;                // Manufacturing year
+    protected double costoDiario;     // Daily rental cost
+    protected boolean disponibilidad; // Availability status
 
     /**
-     * Constructor para crear una instancia de Vehiculo.
+     * Constructor to create a Vehicle instance.
      *
-     * @param idVehiculo Identificador único del vehículo
-     * @param marca Marca del vehículo (ej: "Toyota")
-     * @param modelo Modelo del vehículo (ej: "Corolla")
-     * @param año Año de fabricación del vehículo
-     * @param costoDiario Costo base de alquiler por día
+     * @param idVehiculo Unique identifier for the vehicle
+     * @param marca Brand of the vehicle
+     * @param modelo Model of the vehicle
+     * @param año Manufacturing year
+     * @param costoDiario Daily rental cost
      */
     public Vehiculo(String idVehiculo, String marca, String modelo, int año, double costoDiario) {
         this.idVehiculo = idVehiculo;
@@ -30,45 +28,51 @@ public abstract class Vehiculo {
         this.modelo = modelo;
         this.año = año;
         this.costoDiario = costoDiario;
-        this.disponibilidad = true; // Todos los vehículos empiezan disponibles
+        this.disponibilidad = true; // Vehicles start as available
     }
 
     /**
-     * Calcula el precio total del alquiler considerando días, seguro y GPS.
+     * Calculates the total rental price including optional services.
      *
-     * @param dias Número de días de alquiler
-     * @param seguro true si incluye seguro (10% adicional)
-     * @param gps true si incluye GPS ($5 por día)
-     * @return Precio total calculado
+     * @param dias Number of rental days
+     * @param seguro true to include insurance (10% surcharge)
+     * @param gps true to include GPS ($5 per day)
+     * @return Total calculated price
      */
     public double calcularPrecio(int dias, boolean seguro, boolean gps) {
         double precioBase = dias * costoDiario;
-        if (seguro) precioBase += precioBase * 0.10; // 10% adicional por seguro
-        if (gps) precioBase += 5 * dias; // $5 por día por GPS
+        if (seguro) precioBase += precioBase * 0.10; // 10% insurance surcharge
+        if (gps) precioBase += 5 * dias;             // $5 per day for GPS
         return precioBase;
     }
 
-    // ==================== GETTERS Y SETTERS ====================
+    // ==================== GETTERS AND SETTERS ====================
 
-    /**
-     * Verifica si el vehículo está disponible para alquiler.
-     *
-     * @return true si está disponible, false otherwise
-     */
+    public String getIdVehiculo() {
+        return idVehiculo;
+    }
+
+    public String getMarca() {
+        return marca;
+    }
+
+    public String getModelo() {
+        return modelo;
+    }
+
+    public int getAño() {
+        return año;
+    }
+
+    public double getCostoDiario() {
+        return costoDiario;
+    }
+
     public boolean isDisponible() {
         return disponibilidad;
     }
 
-    /**
-     * Establece la disponibilidad del vehículo.
-     *
-     * @param disponibilidad true para disponible, false para no disponible
-     */
     public void setDisponibilidad(boolean disponibilidad) {
         this.disponibilidad = disponibilidad;
-    }
-
-    public String getIdVehiculo() {
-        return idVehiculo;
     }
 }

@@ -1,24 +1,26 @@
 package com.sistema.reservas.model;
 
 /**
- * Representa un automóvil en el sistema de reservas.
- * Hereda de la clase Vehiculo y añade el tipo de combustible.
+ * Represents a car in the vehicle reservation system.
+ * Inherits from the Vehicle class and adds fuel type specification.
+ * Contains specific attributes and methods for automobile management.
  *
  * @author Santi Bartolo
  * @version 1.0
  */
 public class Auto extends Vehiculo {
-    private String tipoCombustible; // Gasolina, Diésel, Eléctrico
+    private String tipoCombustible; // Fuel type: Gasoline, Diesel, Electric
 
     /**
-     * Constructor para crear una instancia de Auto.
+     * Constructor to create a Car instance.
+     * Initializes car properties including fuel type.
      *
-     * @param id Identificador único del auto
-     * @param marca Marca del auto
-     * @param modelo Modelo del auto
-     * @param año Año de fabricación
-     * @param costo Costo diario de alquiler
-     * @param combustible Tipo de combustible (Gasolina, Diésel, Eléctrico)
+     * @param id Unique identifier for the car
+     * @param marca Brand of the car
+     * @param modelo Model of the car
+     * @param año Manufacturing year
+     * @param costo Daily rental cost
+     * @param combustible Fuel type (Gasoline, Diesel, Electric)
      */
     public Auto(String id, String marca, String modelo, int año, double costo, String combustible) {
         super(id, marca, modelo, año, costo);
@@ -26,9 +28,9 @@ public class Auto extends Vehiculo {
     }
 
     /**
-     * Obtiene el tipo de combustible del auto.
+     * Gets the fuel type of the car.
      *
-     * @return Tipo de combustible (Gasolina, Diésel, Eléctrico)
+     * @return Fuel type (Gasoline, Diesel, Electric)
      */
     public String getTipoCombustible() {
         return tipoCombustible;

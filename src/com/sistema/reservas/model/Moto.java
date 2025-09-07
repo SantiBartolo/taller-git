@@ -1,24 +1,26 @@
 package com.sistema.reservas.model;
 
 /**
- * Representa una motocicleta en el sistema de reservas.
- * Hereda de Vehiculo y añade la cilindrada.
+ * Represents a motorcycle in the vehicle reservation system.
+ * Inherits from the Vehicle class and adds engine displacement specification.
+ * Contains specific attributes and methods for motorcycle management.
  *
  * @author Santi Bartolo
  * @version 1.0
  */
 public class Moto extends Vehiculo {
-    private int cilindrada;
+    private int cilindrada; // Engine displacement in cubic centimeters (cc)
 
     /**
-     * Constructor para crear una instancia de Moto.
+     * Constructor to create a Motorcycle instance.
+     * Initializes motorcycle properties including engine displacement.
      *
-     * @param id Identificador único de la moto
-     * @param marca Marca de la moto
-     * @param modelo Modelo de la moto
-     * @param año Año de fabricación
-     * @param costo Costo diario de alquiler
-     * @param cilindrada Cilindrada en cc (centímetros cúbicos)
+     * @param id Unique identifier for the motorcycle
+     * @param marca Brand of the motorcycle
+     * @param modelo Model of the motorcycle
+     * @param año Manufacturing year
+     * @param costo Daily rental cost
+     * @param cilindrada Engine displacement in cc (cubic centimeters)
      */
     public Moto(String id, String marca, String modelo, int año, double costo, int cilindrada) {
         super(id, marca, modelo, año, costo);
@@ -26,9 +28,9 @@ public class Moto extends Vehiculo {
     }
 
     /**
-     * Obtiene la cilindrada de la moto.
+     * Gets the engine displacement of the motorcycle.
      *
-     * @return Cilindrada en cc
+     * @return Engine displacement in cc (cubic centimeters)
      */
     public int getCilindrada() {
         return cilindrada;

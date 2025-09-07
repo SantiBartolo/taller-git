@@ -3,36 +3,38 @@ package com.sistema.reservas.model;
 import java.time.LocalDate;
 
 /**
- * Representa una reserva de vehículo en el sistema.
- * Gestiona la información de la reserva, fechas y costos asociados.
+ * Represents a vehicle reservation in the system.
+ * Manages reservation information, dates, and associated costs.
+ * Handles reservation confirmation and cost calculation.
  *
  * @author Santi Bartolo
  * @version 1.0
  */
 public class Reserva {
-    private static int contador = 1;
-    private String idReserva;
-    private Cliente cliente;
-    private Vehiculo vehiculo;
-    private LocalDate fechaInicio;
-    private LocalDate fechaFin;
-    private double costoTotal;
-    private boolean seguro;
-    private boolean gps;
+    private static int contador = 1;          // Static counter for auto-generating reservation IDs
+    private String idReserva;                 // Unique reservation identifier
+    private Cliente cliente;                  // Customer making the reservation
+    private Vehiculo vehiculo;                // Vehicle being reserved
+    private LocalDate fechaInicio;            // Reservation start date
+    private LocalDate fechaFin;               // Reservation end date
+    private double costoTotal;                // Total calculated cost
+    private boolean seguro;                   // Insurance inclusion flag
+    private boolean gps;                      // GPS inclusion flag
 
     /**
-     * Constructor para crear una instancia de Reserva.
+     * Constructor to create a Reservation instance.
+     * Auto-generates reservation ID and initializes all reservation details.
      *
-     * @param vehiculo Vehículo a reservar
-     * @param cliente Cliente que realiza la reserva
-     * @param inicio Fecha de inicio de la reserva
-     * @param fin Fecha de fin de la reserva
-     * @param seguro true si incluye seguro
-     * @param gps true si incluye GPS
+     * @param vehiculo Vehicle to be reserved
+     * @param cliente Customer making the reservation
+     * @param inicio Reservation start date
+     * @param fin Reservation end date
+     * @param seguro true to include insurance
+     * @param gps true to include GPS
      */
     public Reserva(Vehiculo vehiculo, Cliente cliente, LocalDate inicio, LocalDate fin,
                    boolean seguro, boolean gps) {
-        this.idReserva = "R" + contador++;
+        this.idReserva = "R" + contador++;    // Auto-generate ID: R1, R2, R3...
         this.vehiculo = vehiculo;
         this.cliente = cliente;
         this.fechaInicio = inicio;
@@ -42,38 +44,39 @@ public class Reserva {
     }
 
     /**
-     * Confirma la reserva, calcula el costo total y marca el vehículo como no disponible.
+     * Confirms the reservation by calculating total cost and marking vehicle as unavailable.
+     * Calculates rental days and applies additional services costs.
      */
     public void confirmarReserva() {
         int dias = (int) (fechaFin.toEpochDay() - fechaInicio.toEpochDay());
         this.costoTotal = vehiculo.calcularPrecio(dias, seguro, gps);
-        vehiculo.setDisponibilidad(false);
+        vehiculo.setDisponibilidad(false);    // Mark vehicle as reserved
     }
 
     // ==================== GETTERS ====================
 
     /**
-     * Obtiene la fecha de fin de la reserva.
+     * Gets the reservation end date.
      *
-     * @return Fecha de fin
+     * @return End date of the reservation
      */
     public LocalDate getFechaFin() {
         return fechaFin;
     }
 
     /**
-     * Obtiene el ID único de la reserva.
+     * Gets the unique reservation identifier.
      *
-     * @return ID de la reserva
+     * @return Reservation ID
      */
     public String getIdReserva() {
         return idReserva;
     }
 
     /**
-     * Obtiene el costo total de la reserva.
+     * Gets the total calculated cost of the reservation.
      *
-     * @return Costo total calculado
+     * @return Total cost including additional services
      */
     public double getCostoTotal() {
         return costoTotal;
