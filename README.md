@@ -5,7 +5,7 @@
 ## 📖 Description
 Java-based system for managing reservations of a diverse vehicle fleet. Allows customers to browse and reserve vehicles, while administrators manage the fleet.
 
-"Aclaración varias partes quedaron en español ya que al principio lo hice asi por lo que ya me parecio tedioso tener que organizar todo como los nombre, clases y demas en español"
+"Clarification: Several parts were left in Spanish since at first I did it that way, so it seemed tedious to have to organize everything like the names, classes, etc. in Spanish."
 
 ## 🚀 Technologies Used
 - **Java 8+**: Main programming language
